@@ -4,20 +4,16 @@
 #include <vector>
 using namespace std;
 
-int main() {
-    cout << "Hello";
-    return 0;
-}
-
 vector<vector<int>> three_sum(vector<int> arr, int target) {
     int n = arr.size();
     vector<vector<int>> res;
-    sort(arr, arr.begin(), arr.end());
-    for (int i = 0; i < n-3; i++) {
-        int sum = arr[i];
+    sort(arr.begin(), arr.end());
+    for (int i = 0; i <= n-3; i++) {
+       
         int j = i+1;
         int k = n-1;
         while (j < k) {
+            int sum = arr[i];
             sum += arr[j];
             sum += arr[k];
             if (sum == target) {
@@ -34,4 +30,19 @@ vector<vector<int>> three_sum(vector<int> arr, int target) {
     }
     return res;
 }
+
+int main() {
+    cout << "Hello\n";
+    vector<vector<int>> res = three_sum({1,2,3,4,5,6,7,8,9,15}, 18);
+    for (vector<int> v: res) {
+        cout << "[";
+        for (int n: v) {
+            cout << to_string(n) << ","; 
+        }
+        cout << "]\n";
+    }
+    return 0;
+}
+
+
 
