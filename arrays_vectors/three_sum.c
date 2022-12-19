@@ -22,9 +22,16 @@ vector<vector<int>> three_sum(vector<int> arr, int target) {
             sum += arr[k];
             if (sum == target) {
                 res.push_back({arr[i], arr[j], arr[k]});
-            } else 
+                j++;
+                k--;
+            } else if (sum > target) {
+                k--;
+            } else {
+                j++;
+            }
         }
         
     }
+    return res;
 }
 
