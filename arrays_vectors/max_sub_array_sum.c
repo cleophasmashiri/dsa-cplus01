@@ -5,17 +5,11 @@
 using namespace std;
 
 int maxSubArraySum(vector<int> a) {
-    int n = a.size();
-    vector<int> s(n, 0);
-    int p = 0;
-    while (p < n && a[p] < 0) {
-        s[p] = 0;
-        p++;
-    }
-    int m = 0;
-    for (int i = p; i < n; i++) {
-        s[i] = s[i-1] + a[i];
-        if (s[i] > m) m = s[i];
+    int m = a[0];
+    int c = a[0];
+    for (int i = 1; i < a.size(); i++) {
+        c = max(a[i], c+a[i]);
+        m = max(m, c);  
     }
     return m;
 }
