@@ -4,40 +4,34 @@
 
 using namespace std;
 
-void replaceSpace(char *s)
-{
-    int n = 0;
-    for (int i = 0; s[i] != '\0'; i++)
-    {
-        if (s[i] == ' ')
-            n++;
+void replace(char *s) {
+    int c = 0;
+   
+    for (int i = 0; s[i]!='\0'; i++) {
+        if (s[i] == ' ') c++;
     }
 
-    int x = strlen(s) + 2 * n;
-
-    s[x--] = '\0';
-    int m = strlen(s);
-    for (int i = m-1; i >= 0; i--)
-    {
-        if (s[i] == ' ')
-        {
-            s[x--] = '0';
-            s[x--] = '2';
-            s[x--] = '%';
-        }
-        else
-        {
-            s[x--] = s[i];
+    int n = strlen(s);
+    int m = n + 2*c;
+    s[m--] = '\0';
+    for (int i = n-1; i >= 0; i--) {
+        if (s[i] == ' ') {
+            s[m--] = '0';
+            s[m--] = '2';
+            s[m--] = '%';
+        } else {
+            s[m--] = s[i];
         }
     }
+
 }
 
-int main()
-{
+int main() {
+    cout << "Enter words\n";
     char s[1000];
-    cout << "Enter string" << endl;
     cin.getline(s, 1000);
-    replaceSpace(s);
-    cout << s << endl;
+    replace(s);
+    cout <<s<<endl ;
     return 0;
 }
+
