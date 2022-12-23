@@ -26,9 +26,19 @@ char *tokeniser(char *s, char d) {
     return t;
 }
 
+int convertStrInt(string s) {
+    int a = 0;
+    int p = 1;
+    for (int i = s.length()-1; i>=0; i--) {
+        a += ((s[i]-'0')) *p;
+        p *= 10;
+    }
+    return a;
+}
+
 bool numericSort(pair<string, string> p1, pair<string, string> p2) {
-    // int x1 = (int)p1;
-    // int x2 = (int)p2;
+    int x1 = convertStrInt(p1.first);
+    int x2 = convertStrInt(p2.first);
     return p1 < p2;
 }
 bool numericSortDsc(pair<string, string> p1, pair<string, string> p2) {
@@ -61,29 +71,36 @@ vector<string> sortStrings(vector<string> ss, bool plusOrder, int col, bool isNu
     // s1 = "10 34 34", col = 1;
     for (string s: ss) {
         pair<string, string> p;
-        char *t = tokeniser((char *)s.c_str(), ' ');
+        p.first = getKey(s, col);
         p.second = s;
-        int c = 1;
-        while (t!=NULL)
-        {
-            if (col == c) {
-                p.first = t;
-            }
-            t = tokeniser(NULL, ' ');
-            c++;
-        }
         pp.push_back(p);
+        // cout<<"Pairs: key="<<p.first<<" value="<<p.second<<endl;
     }
-    //if (plusOrder && isNumeric) sort(pp.begin(), pp.end(), numericSort);
+    if (plusOrder && isNumeric) sort(pp.begin(), pp.end(), numericSort);
     // else if ((!plusOrder) && isNumeric) sort(pp.begin(), pp.end(), numericSortDsc);
     // else if ((plusOrder) && !isNumeric) sort(pp.begin(), pp.end(), lexSort);
     // else if ((!plusOrder) && !isNumeric) sort(pp.begin(), pp.end(), lexSortDsc);
     vector<string> res;
-    //for (pair<string, string> y: pp) res.push_back(y.second);
+    for (pair<string, string> y: pp) res.push_back(y.second);
     return res;
 }
 
 int main() {
-    cout<<"Sort Strings"<<getKey("12 13, 150, 5686", 4)<<endl;
+    // vector<string> ss = {"1 4 3", "1 1 3", "1 2 3"};
+    // cout<<"Original String"<<endl;
+    //  for (string s: ss) 
+    //     cout<<s<<endl;
+    // vector<string> res = sortStrings(ss, true, 2, true);
+    // cout<<"Result String"<<endl;
+    // for (string s: res) 
+    //     cout<<s<<endl;
+    string s = "12304";
+    pair<string, string> p1;
+    p1.first = "1";
+    p1.second = "2";
+    pair<string, string> p2;
+    p2.first = "10";
+    p2.second = "20";
+    cout<<s<<" as numericSort 1,4:"<<numericSort(p2,p1)<<endl;
     return 0;
 }

@@ -1,5 +1,13 @@
 {
     "files.associations": {
-        "vector": "c"
+        "vector": "c",
+        "deque": "c",
+        "string": "c",
+        "map": "c",
+        "array": "c",
+        "unordered_map": "c",
+        "unordered_set": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     }
 }
